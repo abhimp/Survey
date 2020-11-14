@@ -30,4 +30,7 @@ However, DASH is not a protocol -- it only specifies an architecture (Fig.~\ref{
 Every video streaming service (e.g., YouTube, Netflix, etc.) is free to define its own implementation of the DASH modules.
 
 \subsection{ABR}
-Adaptive bitrate algorithm or ABR algorithm is the heart of the DASH. ABR decide when and which
+Adaptive bitrate algorithm or ABR algorithm is the heart of the DASH. ABR decide when and which quality to download based on network quality and other parameter. Primary job of any ABR algorithm is improve user experience by selecting appropriate video quality for the a segment. As the online video streaming become one of the most popular service in the Internet, it become more prevalent to improve ABR algorithm to provide better QoE in different. The problem attract researcher from academic as well as the industries. Researcher start exploiting different areas of video streaming with a common goal, i.e. improving QoE for end user.
+
+\subsection{QoE}
+Quality of Experience is a important parameter in any field which involves end users. In case of the video streaming, QoE is metric to measure whether user have enjoyed the video or not. QoE is mostly a user perspective and it depends on several factor such as startup delay, quality flactuation, overall quality, rebuffering, audio/video device, video content. Although all this parameters are important, it is difficult to measure user dependent parameter and video content. Several researcher tried to to find best measurable metric to calculate QoE which can be acceptable. Mok \etal \cite{5990550} tried to calculate QoE from the network QoS. Infact they suggested that user QoS (or QoS of HTTP) is the QoE. 
