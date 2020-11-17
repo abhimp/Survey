@@ -13,8 +13,13 @@ Whenever a player wants to play the DASH based video streaming, it first have to
 
 The simplicity of the DASH lies in the offloading of the computation to the player instead of the server. So, any existing webserver can serve video stream without any modification. Also, the use of MPD file allow DASH streaming server to support large number of the player without any hassle. Service provider can encode the video and audio in all the codec it wants to support and create MPD file containing all the different type of codec as well as quality levels. The player have to choose the codec it can play from the MPD file.
 
-\subsection{HTML5 and DASH}
-The world wide web consortium (W3C) specifies the experimental media source extension (MSE) which allow JavaScript to manuplate HTML5 video player directly. It also allows to push byte-stream of media data directly to the player decoder and change the player buffer as per requirement on-the-fly. The MSE provide a rich set of API which is being used to developed DASH based video streaming client as all the major browser support the MSE. YouTube started using this extension from the 2013.
+As MPD file can contain multiple media code as well as the multiple quality version of each codec. The player have to be smart smart and choose correct codec and the correct quality to play a video. As per DASH standard, the players are smart enough not only to choose the correct codec and quality for playback but also to change the quality during playback to reduce the rebuffering. A DASH player run adaptive bitrate (ABR) algorithm to decide when to change quality.
 
-\subsection{ABR and DASH}
-The adaptive bitrate algorithm is the heart of the DASH based streaming system as it decide the quality on the fly.
+\subsection{Adaptive Bitrate Algorithm}
+The adaptive bitrate algorithm is the heart of the DASH based streaming system as it decide the quality of each and every segment on the fly. By default, ABR algorithm runs just before fetching the next chunk. As ABR algorithm is part of the player, it have access to all the playback related parameters and it can use any of those parameter to decide quality for next chunk. The primary goal of any ABR algorithm is to maximize to QoE which is combination of three parameters:
+\begin{itemize}
+	\item {\bf Quality}
+\end{itemize}
+
+\subsection{HTML5 and DASH}
+The world wide web consortium (W3C) specifies the experimental media source extension (MSE) which allow JavaScript to manuplate HTML5 video player directly. It also allows to push byte-stream of media data directly to the player decoder and change the player buffer as per requirement on-the-fly. The MSE provide a rich set of API which is being used to developed DASH based video streaming client as all the major browser support the MSE. With introduction of MSE, providing video streaming service become easier as no fancy player need to be installed in the user end and it become easier to update the player just by changing the {\tt JavaScript} player library.
