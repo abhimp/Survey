@@ -1,4 +1,5 @@
 \section{Adaptive Bitrate (ABR) Algorithm}
 Efficient ABR algorithm is required to get high QoE. However, it is extremely challenging task as the video can be played in any devices including smartphone, low end screen to very high end gaming console, TV. The devices can use a different variety of links to connect to the Internet including cellular, WiFi, broadband. User can also change there connection in while playing the video. From the inception of the DASH, researcher have user different method to design ABR algorithm. This methods can be {\tt buffer based}, {\tt throughput based}, {\tt hybrid} or {\tt other}. We discuss these algorithm in detail.
 
-\subsubitem{Throughput based ABR algorithm}
+\subsection{Throughput based ABR algorithm}
+Any ABR's primary job is to play video without rebuffering. To acheive this simple task, initially ABR algorithm used pick a quality with bitrate lower than 
