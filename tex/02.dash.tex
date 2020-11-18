@@ -18,7 +18,8 @@ As MPD file can contain multiple media code as well as the multiple quality vers
 \subsection{Adaptive Bitrate Algorithm}
 The adaptive bitrate algorithm is the heart of the DASH based streaming system as it decide the quality of each and every segment on the fly. By default, ABR algorithm runs just before fetching the next chunk. As ABR algorithm is part of the player, it have access to all the playback related parameters and it can use any of those parameter to decide quality for next chunk. The primary goal of any ABR algorithm is to maximize to QoE which is combination of three parameters:
 \begin{itemize}
-	\item {\bf Quality}
+	\item {\bf Quality:} Quality of video or audio is determined by the sharpness of the video. Sharpness of a video is directly related to the bitrate of sharpness increases. It is expected that sharp media have better details in the media in both audio and video thus provide better experience in enjoying the stream. Any ABR tries to maintain bitrate as high as possible so that the quality of experience improves.
+	\item{\bf Smoothness:}
 \end{itemize}
 
 \subsection{HTML5 and DASH}
