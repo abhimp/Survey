@@ -7,19 +7,45 @@ Any ABR's primary job is to play video without rebuffering. To acheive this simp
 \subsubsection{QDASH\cite{10.1145/2155555.2155558}}
 Mok \etal\ design the QDASH\cite{10.1145/2155555.2155558}, one of the early ABR algorithms with the awarness of QoE, consider the abrupt quality change is not acceptable. The algorithm have two parts, a) ABR algorithm and b) Bandwidth measurement tool. They proposed a special module to run at the streaming server which measure the client bandwidth. The ABR algorithm explicitly connect the measurement module and get in the bandwidth information. With the bandwidth information, QDASH find the most suitable bitrate. However, QDASH does not switch to most suitable bitrate immediately, rather it switch to intermediate bit rate to increase the QoE.
 
-\subsubsection{FESTIVE\cite{10.1145/2413176.2413189}}
+\subsubsection{FESTIVE}
+FESTIVE\cite{10.1145/2413176.2413189} is a DASH based video streaming system that designed to provide fairness between players that share bottleneck in a stable and efficient way. Jiang \etal\ show the measured throughput may not be correct, and the available bottleneck bandwidth might be underutilized due to the scheduling scheme. So, they suggested a method including three steps. These steps are i) estimate the available bandwidth as the harmonic mean of last 20 throughput measurement, ii) never to jump bitrate, increment or decrement should not go beyond 1 level, and iii) randomized the segment scheduling so that all the player get a fair share of the bottle link.
 
-\subsubsection{}
+\subsubsection{ELASTIC\cite{6691442}}
+All the client side adaptive algorithm generate on-off traffic which lead to unfairness among player. Cicco \etal\ designed ELASTIC\cite{6691442}, a client-side controller that does not generate on-off traffic pattern. ELASTIC select video bitrate for a segment in such a way so that it finishes downloading the segment at the time when next segment needs to be downloaded. So, there is not requirement of the on-off traffic generation, and traffic can be fair as underlying TCP is itself fair for long running system.
+
+\subsubsection{Presto\cite{7249417}}
+Zhang \etal\ design Presto\cite{7249417} to provide fairness among player when players are playing from multiple servers. THey argue that a player might consuming more bandwidth of the bottleneck by running more number of parallel flows. So, they provide a mechanism to restrict bitrate of a player with more flows and improve quality. Presto exploit it the fact that a user get annoyed with drastic bit drop but not with drastic bitrate increase\cite{10.1145/2018602.2018611}. It also suspend some flows for sometime so bandwidth utilization stabilize for the time and resume later.
+
+\subsubsection{SQUAD\cite{10.1145/2910017.2910593}}
+SQUAD\cite{10.1145/2910017.2910593} is a spectrum\cite{1386243} based quality adaptation technique for DASH based video streaming system. Wang \etal\ assumes spectrum as the variation in the bitrate around some $N$ number of segments. The proposed system start with providing a new method measure the throughput. Normally throughput are measured when segments have been downloaded and estimations are made based on the measured throughput. Authors have pointed out that this technique may not be correct as the size of the segments are different and thus it might take different time to download segments even when the bandwidth is same. So, SQUAD suggested to do running average of throughput over the course of the segment downloading. Then it proposed to set the bitrate of few initial segment to the lowest bitrate available and after initial set of segment, set bitrate in such a way so that the bitrate variation in a window i.e. SPECTRUM is lowest.
+
+\subsubsection{CS2P\cite{10.1145/2934872.2934898}}
+
+
 
 \subsection{Buffer Based}
+Buffer based bitrate adaptation technique is alternative technique of througput based where the player does not need to estimate the throughput to adapt the playback quality. As througput estimation is a complex and most of the time inaccurate due to the nature of network dynamics. Also, the middle catching devices including proxy make it more difficult to estimate real througput. Buffer based ABR algorithms do not suffers from similar problem. In the past decade, researcher have designed several buffer based ABR algorithms. We are going discuss few of those algorithms.
 
-\subsubsection{\cite{10.1145/2619239.2626296,10.1145/2398776.2398800,10.1145/2491172.2491179}}
+\subsubsection{Buffer based rate adaption\cite{10.1145/2619239.2626296,10.1145/2398776.2398800,10.1145/2491172.2491179}}
+Huang \etal(\cite{10.1145/2619239.2626296,10.1145/2398776.2398800,10.1145/2491172.2491179}) describe a bitrate adaptation mechanism solely based on the playback buffer level. The author suggested that the playback buffer is a function of bitrate and network throughput, thus player buffer level can be a indication whether to change bitrate or not. Authors use a rate to buffer map to calculate the bitrate for a give buffer. They use a algorithm to remove any fine boundary between to bitrate to avoid frequent bitrate flactuation.
 
-\subsubsection{\cite{6229732}}
+\subsubsection{Threshold driven buffer based adaptation\cite{6229732}}
+Miller \etal\ designed a buffer based algorithm in \cite{6229732} as an remedy for the measurement problem of througput driven algorithms. They uses 3 buffer levels $B_{min}$, $B_{low}$ and $B_{max}$ ($0 < B_{min} < B_{low} < B_{max}$) as threshold to decide the bitrate switch. The algorithm aims to keep the buffer level to close to mean of $B_{low}$ and $B_{max}$. It decrease the bitrate if buffer level goes below $B_{low}$, drops to lowest if it goes below $B_{min}$ and increase if it goes beyond $B_{max}$.
 
-\subsubsection{\cite{7524428}}
+\subsubsection{SABRE\cite{10.1145/2483977.2484004}}
+SABRE is designed to mitigate the buffer bloat effect of TCP, which might cause queuing delay upto few seconds in case of HTTP streaming. Mansy \etal(\cite{10.1145/2483977.2484004}) suggested to use HTTP pipeline where multiple HTTP-request can be pushed together. At the client side, make {\tt recv} call in non-aggressive way to reduce the queuing delay. Due to it's paced {\tt recv} call, it is impossible measure throughput correctly. So, the change the pacing of {\tt recv} call based on the playback buffer. The player, change the bitrate as per the observed download rate.
 
-\subsubsection{\cite{10.1145/2910017.2910596}}
+\subsubsection{SARA\cite{7247436}}
+SARA\cite{7247436} is segment aware rate adaption technique developed by Juluri \etal. It is a mixed adaptive system where the playback buffer is used to decide how the bitrate should change and the throughput is used to decide apropriate bitrate. It have four bitrate adaptation scheme based on four buffer thresholds. These are a) slowstart: when buffer ($B_{curr}$) very low ($B_{curr}<I$), lowest bitrate is selected, b) additive increase: when buffer is moderated ($B_{\alpha} \le B_{curr} > B_{\beta}$), it care fully increase the bitrate and c) aggressive bitrate switching: if the buffer is high enough ($B_{\beta} \le B_{curr} \ge B_{max}$, bitrate can jump without any effect and d) delayed download: if the buffer is saturated ($B_{max} < B_{curr}$), download have to wait for buffer goes down.
+
+\subsubsection{Buffer Occupancy based Lyapunov Algorithm (BOLA)\cite{7524428}}
+BOLA\cite{7524428} treat the the ABR streaming as optimization problem where average bitrate need to be maximize and rebuffering needs to be minimize. Spiteri \etal\ solves the problem using Lyapunov optimization and provides theoritical guaranti on the QoE. BOLA does not require to compute the througput, rather it solely based on playout buffer.
+
+\subsubsection{ABMA+\cite{10.1145/2910017.2910596}}
+Beben \etal\ proposes ABMA+\cite{10.1145/2910017.2910596} which predict the video freezing probablity for each representation and representation that statisfy the predefined threshold. It continously monitor the segment download time and using time characteristics and the precomputed buffer-map it decides best bitrate for smooth playback.
+
+\subsubsection{mDASH\cite{7393865}}
+mDASH is Markov-decision based bitrate adaptation algorithm proposed by Zhou \etal\ in \cite{7393865}. Author uses a heterogeous and time varying Markov model to estimate the future throughput. \red{{\bf Difficult to understand, push it to other section.}}
 
 \subsection{Hybrid/control theory}
 
