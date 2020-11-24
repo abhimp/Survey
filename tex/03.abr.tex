@@ -47,16 +47,23 @@ Beben \etal\ proposes ABMA+\cite{10.1145/2910017.2910596} which predict the vide
 \subsubsection{mDASH\cite{7393865}}
 mDASH is Markov-decision based bitrate adaptation algorithm proposed by Zhou \etal\ in \cite{7393865}. Author uses a heterogeous and time varying Markov model to estimate the future throughput. \red{{\bf Difficult to understand, push it to other section.}}
 
-\subsection{Hybrid/control theory}
+\subsection{Hybrid ABR algorithms}
+There are algorithm which consider both buffer and throughput to adapt the bitrate. These algorithm can be further categorised in control system based and without control system based. We will discuss few of them here.
 
-\subsubsection{\cite{10.1145/2413176.2413190,6694183}}
+\subsubsection{Smooth rate adaptation\cite{10.1145/2413176.2413190,6694183}}
+The authors of \cite{10.1145/2413176.2413190} and \cite{6694183} proposes a method involving a control loop and measured throughput and playback buffer. The control loops start with playback buffer and a reference buffer and difference between the these two is used to predict the throughput. Then the predicted throughput is used to determine the video bitrate. The video bitrate and the real throughput lead to playback buffer occupancy which is further used in the control loop.
 
-\subsubsection{\cite{140405}}
+\subsubsection{Panda\cite{140405}}
+Li \etal\ found that most of the widely deployed DASH like streaming suffers from bitrate fluctuation when multiple player shares a bottleneck. They also found that the fluctuation depends on various parameter including the number of player, players start time, background traffic. While digging more they that all the technique assume that the measure throughput is fair and use that directly. However, it is not true and due to this fundamental mistake player lost the capability of over-coming buffer underrun. Li \etal\ suggested to use probe the network to find the available bandwidth. PANDA uses TCP like AIMD scheme for rate-adaptation. However, it only use the probe per chunk instead of per RTT.
 
-\subsubsection{\cite{10.1145/2910017.2910593}}
+\subsubsection{Model predictive control algorithm\cite{10.1145/2785956.2787486,10.1145/2670518.2673877}}
+Model predictive control (MPC) algorithm is proposed by Yin \etal\ in their paper \cite{10.1145/2785956.2787486,10.1145/2670518.2673877} as superios ABR algorithm than the existing algorithms by optimally combine the throughput and buffer occupancy information. Author formulate the QoE optimization problem as a stochastic optimal control problem and tries to solve it using MPC. They formulate the bitrate selection as a function of three components a) predicted future bitrate, b) buffer occupancy and c) available bitrates. The basic MPC algorithm is made up with three steps: \\
+a) Predict: Although the future throughput prediction in difficult most of the time inaccurate, they assumes that there is a way to do it with acceptable errors. In throughput prediction step they can use any third party algorithm to predict the throughput.\\
+b) Optimize: In this phase, the MPC search for the bitrate for next $N$ segments with predicted throughput and calculated buffer occupancy and choose the best one. The problem can be solved using {\tt CPLEX} solver.\\
+c) Apply: Once bitrate is selected, it should start downloading the segment.\\
+The optimization step is computationally heavy and it have to perform before downloading each segment. So, authors have proposed a alternative to do it fast by using lightweight combinatorials.
 
-\subsubsection{\cite{10.1145/2483977.2484004}}
+\subsection{(Machine) Learning based ABR algorithms}
+Till now we discuss various algorithm that uses parameter like instantenious buffer occupancy and throughput to decide the bitrate of the bitrate. However, researcher have also developed learning based algorithm to solve the problem. In this section we discuss some those algorithms.
 
-\subsubsection{\cite{10.1145/2785956.2787486,10.1145/2670518.2673877}}
-
-\subsubsection{\cite{6691442}}
+\subsubsection{}
