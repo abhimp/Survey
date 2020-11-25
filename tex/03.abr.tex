@@ -66,4 +66,11 @@ The optimization step is computationally heavy and it have to perform before dow
 \subsection{(Machine) Learning based ABR algorithms}
 Till now we discuss various algorithm that uses parameter like instantenious buffer occupancy and throughput to decide the bitrate of the bitrate. However, researcher have also developed learning based algorithm to solve the problem. In this section we discuss some those algorithms.
 
-\subsubsection{}
+\subsubsection{Multi-agent Q-Learning}
+Petrangeli \etal\ proposes Multi-agent Q-Learning\cite{6838245}, a reinforcement-learning based ABR algorithm. The algorithm does not change the client side architecture, however, add a co-ordinating proxy server in between the server and client. The proxy server collect and aggreate the reward from all the players. It then compute the global global signal from the reward and broadcast to the players. The global signal is use to compute the Homo Egualis \cite{10.5555/1402298.1402344} like reward which is used to provide fairness among the players. With this Homo Egualis reward players are able compute the local reward which in turn leads to selection of video quality with the help of throughput, segment lengths and quality levels.
+
+\subsubsection{Online Learning Adaptation}
+Chiariotti \etal\ formulate the Adaptation problem as Markov Decision Process (MDP)\cite{P-1066} optimization problem\cite{10.1145/2910017.2910603}. Authors have find out the future state of the process solely depends on the present state. Here state of the system defined as quality level, available throughput, size of the segment and the playback buffer. The state transition happened based on the action taken in current state based on the action, which is essentially the bitrate, and reward calculated based on the previous state, action taken in previous state and current state. Then they use online reinforcement learning to solved the problem to make the best possible decision.
+
+
+\subsubsection{AdViSE\cite{10.1145/3083187.3083221}}
