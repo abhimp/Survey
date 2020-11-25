@@ -69,8 +69,25 @@ Till now we discuss various algorithm that uses parameter like instantenious buf
 \subsubsection{Multi-agent Q-Learning}
 Petrangeli \etal\ proposes Multi-agent Q-Learning\cite{6838245}, a reinforcement-learning based ABR algorithm. The algorithm does not change the client side architecture, however, add a co-ordinating proxy server in between the server and client. The proxy server collect and aggreate the reward from all the players. It then compute the global global signal from the reward and broadcast to the players. The global signal is use to compute the Homo Egualis \cite{10.5555/1402298.1402344} like reward which is used to provide fairness among the players. With this Homo Egualis reward players are able compute the local reward which in turn leads to selection of video quality with the help of throughput, segment lengths and quality levels.
 
-\subsubsection{Online Learning Adaptation}
+\subsubsection{RL based Online Learning Adaptation}
 Chiariotti \etal\ formulate the Adaptation problem as Markov Decision Process (MDP)\cite{P-1066} optimization problem\cite{10.1145/2910017.2910603}. Authors have find out the future state of the process solely depends on the present state. Here state of the system defined as quality level, available throughput, size of the segment and the playback buffer. The state transition happened based on the action taken in current state based on the action, which is essentially the bitrate, and reward calculated based on the previous state, action taken in previous state and current state. Then they use online reinforcement learning to solved the problem to make the best possible decision.
 
+\subsubsection{D-DASH \cite{8048013}}
+D-DASH\cite{8048013} is an deep-neural network based ABR solution. Like \cite{10.1145/2910017.2910603}, Gadaleta \etal\ formulate the problem as MDP optimization. However, author suggested Q-Learning based deep-neural network solution instead of RL-based solution as it compact and fast.
 
-\subsubsection{AdViSE\cite{10.1145/3083187.3083221}}
+\subsubsection{Pensieve}
+Mao \etal\ designed Pensieve\cite{10.1145/3098822.3098843} to solve the bitrate selection problem using Recurrent Neural Network. The Pensieve treat multiple parameter including buffer occupancy, download history, playback time as the current state and bitrate selection is action to move to next state. Pensieve use the QoE as the reward for state transition. The aim here is to increase the reward i.e. QoE by taking accurate action. Pensieve selection action based on the policy, which a probability distribution of state and action pair. As there are intractably many such pair exists, pensieve uses neural network to represent the policy with manageable parameters. It uses actor-critic network to train the policy with policy gradient method\cite{sutton1999policy}. It also uses the A3C\cite{10.5555/3045390.3045594} algorithm, a actor-critic method involvin two networks, to train its model.\\
+Pensieve proposes a simulation based method to train the network fast and then the train model to used in real playback system. To make the training process even faster, they proposes asynchronous parallel training involving primary and secondary networks.
+
+\subsubsection{Oboe}
+Oboe\cite{10.1145/3230543.3230558} is another learning based ABR technology devised by Akhtar \etal. While Oboe does not directly provide any algorithm to select bitrate for each segment, it tune the confguration of other ABR algorithms including MPC\cite{}, BOLA\cite{} and Penseive\cite{} based on the network state. Oboe precompute the apropriate configuration set for any algorithm based on the different network state using reinfocement learning and apply the learned model online to tune the configuration to provide best possible outcome by a ABR algorithm.
+
+\subsection{Mixed}
+\red{{\bf This is not a section or subsection. I am going to accumulate the different recent ABR algorithms here so that I can categorized them later.}}
+
+
+
+\subsubsection{Favor}
+Fine-grained Video Rate Adaptation or Favor\cite{10.1145/3204949.3204957} proposed by the He \etal\ to optimize the non-conventional parameters like frame-dropping rate, playback speed along with convention parameter bitrate to optimize DASH based player beyond the optimization horizon. The author suggested that viewer cannot notice upto 35\% unneccessary frames can be dropped as well as upto 25\% reduction in playback speed. Although these changes non-conventional, it can allow player to cope with the throughput reduction as frame reduction cause the segment size reduction and playback rate reduction gives more time to download segment. Favor also suggest a framework for 360$^{\circ}$ video by tiling and optimizing individual tiles.
+
+\subsubsection{LiveNAS}
