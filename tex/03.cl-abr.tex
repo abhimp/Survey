@@ -1,4 +1,4 @@
-\section{Adaptive Bitrate (ABR) Algorithm}
+\section{Classical Adaptive Bitrate (ABR) Algorithm}
 Efficient ABR algorithm is required to get high QoE. However, it is extremely challenging task as the video can be played in any devices including smartphone, low end screen to very high end gaming console, TV. The devices can use a different variety of links to connect to the Internet including cellular, WiFi, broadband. User can also change there connection in while playing the video. From the inception of the DASH, researcher have user different method to design ABR algorithm. This methods can be {\tt buffer based}, {\tt throughput based}, {\tt hybrid} or {\tt other}. We discuss these algorithm in detail.
 
 \subsection{Throughput based ABR algorithm}
@@ -63,51 +63,11 @@ b) Optimize: In this phase, the MPC search for the bitrate for next $N$ segments
 c) Apply: Once bitrate is selected, it should start downloading the segment.\\
 The optimization step is computationally heavy and it have to perform before downloading each segment. So, authors have proposed a alternative to do it fast by using lightweight combinations.
 
-\subsection{(Machine) Learning based ABR algorithms}
-Till now we discuss various algorithm that uses parameter like instantaneous buffer occupancy and throughput to decide the bitrate of the bitrate. However, researcher have also developed learning based algorithm to solve the problem. In this section we discuss some those algorithms.
-
-\subsubsection{Multi-agent Q-Learning}
-Petrangeli \etal\ proposes Multi-agent Q-Learning\cite{6838245}, a reinforcement-learning based ABR algorithm. The algorithm does not change the client side architecture, however, add a co-ordinating proxy server in between the server and client. The proxy server collect and aggreate the reward from all the players. It then compute the global global signal from the reward and broadcast to the players. The global signal is use to compute the Homo Egualis \cite{10.5555/1402298.1402344} like reward which is used to provide fairness among the players. With this Homo Egualis reward players are able compute the local reward which in turn leads to selection of video quality with the help of throughput, segment lengths and quality levels.
-
-\subsubsection{RL based Online Learning Adaptation}
-Chiariotti \etal\ formulate the Adaptation problem as Markov Decision Process (MDP)\cite{P-1066} optimization problem\cite{10.1145/2910017.2910603}. Authors have find out the future state of the process solely depends on the present state. Here state of the system defined as quality level, available throughput, size of the segment and the playback buffer. The state transition happened based on the action taken in current state based on the action, which is essentially the bitrate, and reward calculated based on the previous state, action taken in previous state and current state. Then they use online reinforcement learning to solved the problem to make the best possible decision.
-
-\subsubsection{D-DASH \cite{8048013}}
-D-DASH\cite{8048013} is an deep-neural network based ABR solution. Like \cite{10.1145/2910017.2910603}, Gadaleta \etal\ formulate the problem as MDP optimization. However, author suggested Q-Learning based deep-neural network solution instead of RL-based solution as it compact and fast.
-
-\subsubsection{Pensieve}
-Mao \etal\ designed Pensieve\cite{10.1145/3098822.3098843} to solve the bitrate selection problem using Recurrent Neural Network. The Pensieve treat multiple parameter including buffer occupancy, download history, playback time as the current state and bitrate selection is action to move to next state. Pensieve use the QoE as the reward for state transition. The aim here is to increase the reward i.e. QoE by taking accurate action. Pensieve selection action based on the policy, which a probability distribution of state and action pair. As there are intractably many such pair exists, Pensieve uses neural network to represent the policy with manageable parameters. It uses actor-critic network to train the policy with policy gradient method\cite{sutton1999policy}. It also uses the A3C\cite{10.5555/3045390.3045594} algorithm, a actor-critic method involving two networks, to train its model.\\
-Pensieve proposes a simulation based method to train the network fast and then the train model to used in real playback system. To make the training process even faster, they proposes asynchronous parallel training involving primary and secondary networks.
-
-\subsubsection{Oboe}
-Oboe\cite{10.1145/3230543.3230558} is another learning based ABR technology devised by Akhtar \etal. While Oboe does not directly provide any algorithm to select bitrate for each segment, it tune the configuration of other ABR algorithms including MPC\cite{}, BOLA\cite{} and Penseive\cite{} based on the network state. Oboe precompute the appropriate configuration set for any algorithm based on the different network state using reinforcement learning and apply the learned model online to tune the configuration to provide best possible outcome by a ABR algorithm.
-
-\subsection{Live}
-DASH like video streaming system is widely used as it superior ot other system and live video streaming in not an exception. Although interactive video session are difficult to support via DASH due to the rigid latency bound, non-interactive video streaming are supported. Static (or VoD) and live video streaming are almost same expect one part that video segment are not available in the system. All the segment need to capture, processed and distribute to nearest server before it can be served to the client. This small difference invite lot of innovation towards the DASH based live streaming. We will discuss few of those innovation in these section.
-
-\subsubsection{SmoothCache 2.0}
-To reduce the distribution overhead, server load and to improve the quality of experience during the live streaming, SmoothCache 2.0\cite{10.1145/2713168.2713182} provide a solution involving peer to peer networking with DASH. Roverso \etal\ exploit the fact that in case of live streaming all the player need to be at sync with very little tollerance $\delta$. The $\delta$ is the time when a player search for the require segment in other peer and if failed fetch it from the CDN. The authors uses several optimization to reduce the overhead like pro-active prefetching. Pro-active prefetching allow few players to fetch segment before as soon as they are available at the server. 
-
-\subsection{Mixed}
-\red{{\bf This is not a section or subsection. I am going to accumulate the different recent ABR algorithms here so that I can categorized them later.}}
-
-
 
 \subsubsection{Favor}
 Fine-grained Video Rate Adaptation or Favor\cite{10.1145/3204949.3204957} proposed by the He \etal\ to optimize the non-conventional parameters like frame-dropping rate, playback speed along with convention parameter bitrate to optimize DASH based player beyond the optimization horizon. The author suggested that viewer cannot notice upto 35\% frames drops as well as upto 25\% reduction in playback speed. Although these changes non-conventional, it can allow player to cope with the throughput reduction as frame reduction cause the segment size reduction and playback rate reduction gives more time to download segment. Favor also suggest a framework for 360$^{\circ}$ video by tiling and optimizing individual tiles.
 
 
-\subsubsection{Periodical Experience Replay for Multi-path (PERM)}
-PERM\cite{9155492} is actor-critic network based neural adaptive video streaming system which can exploit the multipath capability of multi-homing devices developed by Guan \etal. PERM uses one actor network to decide the quality for a segment and another one for deciding the path to be used to fetch that segment and use only one critic network to evaluate the decision.
-
-\subsubsection{Super-Resolution based video streaming}
-Zhang \etal\ presented a novel approach to increase video streaming quality in their paper \cite{9155384} by improving video quality by the technique call Super-Resolution. Super-Resolution is a technique where client can reconstruct a high quality video from low quality video using reinforcement learning.
-
-\subsubsection{LiveClip}
-When we talk about DASH based videos, we generally think of long videos. So, most of the ABR algorithm might not work for short videos. However, there are services which uses short videos. LiveClip\cite{10.1145/3386290.3396937} solves the problem by designing deep reinforcement learning based ABR algorithm for short videos.
-
 \subsubsection{DASH with P2P}
 Yousef \etal\ design a technique in their paper \cite{10.1145/3339825.3391859} to allow any ABR algorithm to work in a hybrid CDN+P2P DASH based video streaming system. They suggested to keep the video player and the P2P module separate so that any DASH based ABR algorithm can be applied to the player. The authors have find out the main problem with P2P DASH based streaming and the problem is the estimation of throughput or buffer filling rate as the throughput and delay varies drastically while downloading from CDN or a nearby peer. So, they suggested to add extra delay in P2P module while downloading segment from the nearby peer so that the player does not get confused due the download time variation. These way any DASH based ABR algorithm can work in player.
 
-\subsubsection{Grad}
-Grad\cite{10.1145/3394171.3413512} is overhead-award ABR for SVC based video streaming. By default DASH is not designed for SVC based video streaming, so most of the ABR algorithm does not support DASH with. Also, SVC involves lot of extra overhead in dedcodeing. Liu \etal\ design grad to mitigate those problem. To reduce decoding overhead they proposes {\tt jump enabled hybrid coding} where only one enhancement layer can be using to jump multiple layer in SVC. On top of this optimization, they use actor-critic network based reinforce-learning to adapt the quality.
