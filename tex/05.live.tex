@@ -7,5 +7,14 @@ Live video streaming require live transcoding into multiple different quality ve
 
 Even though cloud can be used to transcode live streaming effectively, it not always economical as not all the videos are equally popular. However, transcoding in multiple codec and quality is high. So streaming provider need to be careful about selection of codec and quality level. Aparicio-Pardo \etal\ design an ILP based algorithm in their paper \cite{10.1145/2713168.2713177} to decide the number of quality level require for a live streaming based on the streaming charactics and popularity. It decides CPU budget for each live stream and based on that it decides the quality levels.
 
+\subsection{Video delivery network (VDN)}
+Video delivery network is specifically designed CDN for live video streaming proposed by Mukherjee \etal\ \cite{10.1145/2785956.2787475}. \red{Problem with the motivation} 
+
+
+
 \subsection{SmoothCache 2.0}
 To reduce the distribution overhead, server load and to improve the quality of experience during the live streaming, SmoothCache 2.0\cite{10.1145/2713168.2713182} provide a solution involving peer to peer networking with DASH. Roverso \etal\ exploit the fact that in case of live streaming all the player need to be at sync with very little tollerance $\delta$. The $\delta$ is the time when a player search for the require segment in other peer and if failed fetch it from the CDN. The authors uses several optimization to reduce the overhead like pro-active prefetching. Pro-active prefetching allow few players to fetch segment before as soon as they are available at the server.
+
+\subsection{LiveNAS}
+QoE of a live stream is dependent on the network quality and computation capability, especially when random individual user start streaming using comodity devices like smartphone with cellular data connection. Due to lack of dedicated Internet connection and lack infracture, these user can not ensure a steady streaming quality. Kim \etal\ design LiveNAS\cite{10.1145/3387514.3405856} to improve video quality in such cases. LiveNAS runs super resolution to upgrade video quality at the ingest server.
+

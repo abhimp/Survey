@@ -18,14 +18,14 @@ Pensieve proposes a simulation based method to train the network fast and then t
 Oboe\cite{10.1145/3230543.3230558} is another learning based ABR technology devised by Akhtar \etal. While Oboe does not directly provide any algorithm to select bitrate for each segment, it tune the configuration of other ABR algorithms including MPC\cite{10.1145/2785956.2787486,10.1145/2670518.2673877}, BOLA\cite{7524428} and Penseive\cite{10.1145/3098822.3098843} based on the network state. Oboe precompute the appropriate configuration set for any algorithm based on the different network state using reinforcement learning and apply the learned model online to tune the configuration to provide best possible outcome by a ABR algorithm.
 
 
-\subsubsection{Periodical Experience Replay for Multi-path (PERM)}
+\subsection{Periodical Experience Replay for Multi-path (PERM)}
 PERM\cite{9155492} is actor-critic network based neural adaptive video streaming system which can exploit the multipath capability of multi-homing devices developed by Guan \etal. PERM uses one actor network to decide the quality for a segment and another one for deciding the path to be used to fetch that segment and use only one critic network to evaluate the decision.
 
-\subsubsection{Super-Resolution based video streaming}
+\subsection{Super-Resolution based video streaming}
 Zhang \etal\ presented a novel approach to increase video streaming quality in their paper \cite{9155384} by improving video quality by the technique call Super-Resolution. Super-Resolution is a technique where client can reconstruct a high quality video from low quality video using reinforcement learning.
 
-\subsubsection{LiveClip}
+\subsection{LiveClip}
 When we talk about DASH based videos, we generally think of long videos. So, most of the ABR algorithm might not work for short videos. However, there are services which uses short videos. LiveClip\cite{10.1145/3386290.3396937} solves the problem by designing deep reinforcement learning based ABR algorithm for short videos.
 
-\subsubsection{Grad}
+\subsection{Grad}
 Grad\cite{10.1145/3394171.3413512} is overhead-award ABR for SVC based video streaming. By default DASH is not designed for SVC based video streaming, so most of the ABR algorithm does not support DASH with. Also, SVC involves lot of extra overhead in dedcodeing. Liu \etal\ design grad to mitigate those problem. To reduce decoding overhead they proposes {\tt jump enabled hybrid coding} where only one enhancement layer can be using to jump multiple layer in SVC. On top of this optimization, they use actor-critic network based reinforce-learning to adapt the quality.
