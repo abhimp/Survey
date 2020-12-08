@@ -4,12 +4,16 @@
 \usepackage[hyphens]{url}
 \usepackage{color}
 \usepackage{indentfirst}
-
+\usepackage{multirow}
+\usepackage{rotating}
+\usepackage{pifont}
 
 \newcommand{\etal}{{\it et. al.}}
 \newcommand{\blue}[1]{\textcolor{blue}{#1}}
 \newcommand{\red}[1]{\textcolor{red}{#1}}
-
+\newcommand{\green}[1]{\textcolor{green}{#1}}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
 \begin{document}
 
 \input{tex/01.intro.tex}
@@ -26,8 +30,10 @@
 
 \input{tex/07.youtube.tex}
 
+\input{tex/08.scope.tex}
+
 
 %\bibliographystyle{alpha}
 \bibliographystyle{abbrv}
-\bibliography{collection.bib,others.bib} 
+\bibliography{ref/collection.bib,ref/others.bib,ref/thesis.bib} 
 \end{document}
