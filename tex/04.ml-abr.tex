@@ -34,18 +34,18 @@ Grad\cite{10.1145/3394171.3413512} is overhead-award ABR for SVC based video str
 	\resizebox{\textwidth}{!}{
 		\begin{tabular}{l|cccc|c|c|l|l}
 			\hline
-			\multirow{3}{*}{Algorithm}   & \multicolumn{4}{c}{Goal involved} & \multirow{3}{*}{\begin{turn}{90}No Extra Module\end{turn}} & \multirow{3}{*}{\begin{turn}{90}Continuous Traffic\end{turn}} & \multirow{3}{*}{Remark} \\
+			\multirow{3}{*}{Algorithm} & \multicolumn{4}{c}{Goal involved} & \multirow{3}{*}{\begin{turn}{90}No Extra Module\end{turn}} & \multirow{3}{*}{\begin{turn}{90}Continuous Traffic\end{turn}} & \multirow{3}{*}{Remark} \\
 
-			& \begin{turn}{90}Rebuffering\end{turn} & \begin{turn}{90}Quality\end{turn} & \begin{turn}{90}Smoothness\end{turn} & \begin{turn}{90}Fairness\end{turn} &                                  &                                     &                                                                                                          \\
-			&                              &                          &                             &                           &                                  &                                     &                                                                                                          \\
+			& \begin{turn}{90}Rebuffering\end{turn} & \begin{turn}{90}Quality\end{turn} & \begin{turn}{90}Smoothness\end{turn} & \begin{turn}{90}Fairness\end{turn} & & & \\
+			& & & & & & & \\
 			\hline
-			Multi-agent Q-Learning     & \green{\cmark}                            & \green{\cmark}                        & \green{\cmark}                           & \green{\cmark}                         & \red{\xmark}                                & \red{\xmark}                                   & Reinforcement Learning              & Coordination proxy required                                                                        \\
-			RL-based Online Learning   & \green{\cmark}                            & \green{\cmark}                        & \green{\cmark}                           & \red{\xmark}                         & \green{\cmark}                                & \red{\xmark}                                   & Markov decision process             & Reinforcement learning to solve MDP                                                                \\
-			D-DASH                     & \green{\cmark}                            & \green{\cmark}                        & \green{\cmark}                           & \red{\xmark}                         & \green{\cmark}                                & \red{\xmark}                                   & Markov decision process             & Deep neural network solve MDP                                                                      \\
-			Pensieve                   & \green{\cmark}                            & \green{\cmark}                        & \green{\cmark}                           & \red{\xmark}                         & \green{\cmark}                                & \red{\xmark}                                   & Policy gradient training            & \begin{tabular}[c]{@{}l@{}}A3C based actor-critic network\\ Simulation based training\end{tabular} \\
-			Oboe                       & \green{\cmark}                            & \green{\cmark}                        & \green{\cmark}                           & \red{\xmark}                         & \green{\cmark}                                & \red{\xmark}                                   & Configuration tuning                &                                                                                                    \\
-			PERM                       & \green{\cmark}                            & \green{\cmark}                        & \green{\cmark}                           & \red{\xmark}                         & \green{\cmark}                                & \red{\xmark}                                   & Path selection problem              & Actor-critic network with two actor network                                                        \\
-			Super-resolution           & \green{\cmark}                            & \green{\cmark}                        & \green{\cmark}                           & \red{\xmark}                         & \red{\xmark}                                & \red{\xmark}                                   & Post download quality enhancement   & Neural network based solution \\
+			Multi-agent Q-Learning & \green{\cmark} & \green{\cmark} & \green{\cmark} & \green{\cmark} & \red{\xmark} & \red{\xmark} & Reinforcement Learning & Coordination proxy required \\
+			RL-based Online Learning & \green{\cmark} & \green{\cmark} & \green{\cmark} & \red{\xmark} & \green{\cmark} & \red{\xmark} & Markov decision process & Reinforcement learning to solve MDP \\
+			D-DASH & \green{\cmark} & \green{\cmark} & \green{\cmark} & \red{\xmark} & \green{\cmark} & \red{\xmark} & Markov decision process & Deep neural network solve MDP \\
+			Pensieve & \green{\cmark} & \green{\cmark} & \green{\cmark} & \red{\xmark} & \green{\cmark} & \red{\xmark} & Policy gradient training & \begin{tabular}[c]{@{}l@{}}A3C based actor-critic network\\ Simulation based training\end{tabular} \\
+			Oboe & \green{\cmark} & \green{\cmark} & \green{\cmark} & \red{\xmark} & \green{\cmark} & \red{\xmark} & Configuration tuning & \\
+			PERM & \green{\cmark} & \green{\cmark} & \green{\cmark} & \red{\xmark} & \green{\cmark} & \red{\xmark} & Path selection problem & Actor-critic network with two actor network \\
+			Super-resolution & \green{\cmark} & \green{\cmark} & \green{\cmark} & \red{\xmark} & \red{\xmark} & \red{\xmark} & Post download quality enhancement & Neural network based solution \\
 			\hline
 		\end{tabular}
 	}

@@ -77,35 +77,35 @@ Yousef \etal\ design a technique in their paper \cite{10.1145/3339825.3391859} t
 	\resizebox{\textwidth}{!}{
 	\begin{tabular}{l|cccc|c|c|l}
 		\hline
-		\multirow{3}{*}{Algorithm}   & \multicolumn{4}{c}{Goal involved} & \multirow{3}{*}{\begin{turn}{90}No Extra Module\end{turn}} & \multirow{3}{*}{\begin{turn}{90}Continuous Traffic\end{turn}} & \multirow{3}{*}{Remark} \\
-		
-		& \begin{turn}{90}Rebuffering\end{turn} & \begin{turn}{90}Quality\end{turn} & \begin{turn}{90}Smoothness\end{turn} & \begin{turn}{90}Fairness\end{turn} &                                  &                                     &                                                                                                          \\
-		&                              &                          &                             &                           &                                  &                                     &                                                                                                          \\
+		\multirow{3}{*}{Algorithm} & \multicolumn{4}{c}{Goal involved} & \multirow{3}{*}{\begin{turn}{90}No Extra Module\end{turn}} & \multirow{3}{*}{\begin{turn}{90}Continuous Traffic\end{turn}} & \multirow{3}{*}{Remark} \\
+
+		& \begin{turn}{90}Rebuffering\end{turn} & \begin{turn}{90}Quality\end{turn} & \begin{turn}{90}Smoothness\end{turn} & \begin{turn}{90}Fairness\end{turn} & & & \\
+		& & & & & & & \\
 		\hline
 		\multicolumn{8}{c}{Throughput Based}\\
 		\hline
-		QDASH                        & \green{\cmark}                            & \green{\cmark}                        & \green{\cmark}                           & \red{\xmark}                         & \red{\xmark}                                & \red{\xmark}                                   & Match observed bitrate                                                                                   \\
-		FESTIVE                      & \green{\cmark}                            & \green{\cmark}                        & \green{\cmark}                           & \green{\cmark}                         & \green{\cmark}                                & \red{\xmark}                                   & \begin{tabular}[c]{@{}l@{}}Harmonic Mean\\ No bitrate jump\end{tabular}                                  \\
-		ELASTIC                      & \green{\cmark}                            & \green{\cmark}                        & \red{\xmark}                           & \green{\cmark}                         & \green{\cmark}                                & \green{\cmark}                                   & Fairness from long running TCP                                                                           \\
-		Presto                       & \green{\cmark}                            & \green{\cmark}                        & \green{\cmark}                           & \green{\cmark}                         & \green{\cmark}                                & \red{\xmark}                                   & Multi-flow down stream per player                                                                        \\
-		SQUAD                        & \green{\cmark}                            & \green{\cmark}                        & \green{\cmark}                           & \red{\xmark}                         & \green{\cmark}                                & \red{\xmark}                                   & \begin{tabular}[c]{@{}l@{}}Specturm based\\ Running average throughput\end{tabular}                      \\
+		QDASH & \green{\cmark} & \green{\cmark} & \green{\cmark} & \red{\xmark} & \red{\xmark} & \red{\xmark} & Match observed bitrate \\
+		FESTIVE & \green{\cmark} & \green{\cmark} & \green{\cmark} & \green{\cmark} & \green{\cmark} & \red{\xmark} & \begin{tabular}[c]{@{}l@{}}Harmonic Mean\\ No bitrate jump\end{tabular} \\
+		ELASTIC & \green{\cmark} & \green{\cmark} & \red{\xmark} & \green{\cmark} & \green{\cmark} & \green{\cmark} & Fairness from long running TCP \\
+		Presto & \green{\cmark} & \green{\cmark} & \green{\cmark} & \green{\cmark} & \green{\cmark} & \red{\xmark} & Multi-flow down stream per player \\
+		SQUAD & \green{\cmark} & \green{\cmark} & \green{\cmark} & \red{\xmark} & \green{\cmark} & \red{\xmark} & \begin{tabular}[c]{@{}l@{}}Specturm based\\ Running average throughput\end{tabular} \\
 		\hline
 		\multicolumn{8}{c}{Buffer Based}\\
 		\hline
-		Buffer based rate Adaptation & \green{\cmark}                            & \green{\cmark}                        & \red{\xmark}                           & \red{\xmark}                         & \green{\cmark}                                & \red{\xmark}                                   & rate2buffer map                                                                                          \\
-		Threshold Based              & \green{\cmark}                            & \green{\cmark}                        & \red{\xmark}                           & \red{\xmark}                         & \green{\cmark}                                & \red{\xmark}                                   & Buffer threshold decides bitrate                                                                         \\
-		SABRE                        & \green{\cmark}                            & \green{\cmark}                        & \red{\xmark}                           & \red{\xmark}                         & \green{\cmark}                                & \red{\xmark}                                   & Avoids buffer bloat                                                                                      \\
-		BOLA                         & \green{\cmark}                            & \green{\cmark}                        & \red{\xmark}                           & \red{\xmark}                         & \green{\cmark}                                & \red{\xmark}                                   & Theoritical Guarantee on video quality                                                                   \\
-		ABMA+                        & \green{\cmark}                            & \green{\cmark}                        & \green{\cmark}                           & \red{\xmark}                         & \green{\cmark}                                & \red{\xmark}                                   & Buffer freezing probablity threshold                                                                     \\
-		mDASH                        &                              &                          &                             &                           &                                  &                                     &                                                                                                          \\
+		Buffer based rate Adaptation & \green{\cmark} & \green{\cmark} & \red{\xmark} & \red{\xmark} & \green{\cmark} & \red{\xmark} & rate2buffer map \\
+		Threshold Based & \green{\cmark} & \green{\cmark} & \red{\xmark} & \red{\xmark} & \green{\cmark} & \red{\xmark} & Buffer threshold decides bitrate \\
+		SABRE & \green{\cmark} & \green{\cmark} & \red{\xmark} & \red{\xmark} & \green{\cmark} & \red{\xmark} & Avoids buffer bloat \\
+		BOLA & \green{\cmark} & \green{\cmark} & \red{\xmark} & \red{\xmark} & \green{\cmark} & \red{\xmark} & Theoretical Guarantee on video quality \\
+		ABMA+ & \green{\cmark} & \green{\cmark} & \green{\cmark} & \red{\xmark} & \green{\cmark} & \red{\xmark} & Buffer freezing probability threshold \\
+		mDASH & & & & & & & \\
 		\hline
 		\multicolumn{8}{c}{Hybrid} \\
 		\hline
-		Smooth rate adaptation       & \green{\cmark}                            & \green{\cmark}                        & \red{\xmark}                           & \red{\xmark}                         & \green{\cmark}                                & \red{\xmark}                                   & \begin{tabular}[c]{@{}l@{}}Control look\\ Throughput prediction\end{tabular}                             \\
-		PANDA                        & \green{\cmark}                            & \green{\cmark}                        & \green{\cmark}                           & \green{\cmark}                         & \green{\cmark}                                & \red{\xmark}                                   & \begin{tabular}[c]{@{}l@{}}Probe network by increased datarate\\ AIMD bitrate selection\end{tabular}     \\
-		SARA                         & \green{\cmark}                            & \green{\cmark}                        & \red{\xmark}                           & \red{\xmark}                         & \green{\cmark}                                & \red{\xmark}                                   & \begin{tabular}[c]{@{}l@{}}Buffer used to decide selection algo\\ Match measured throughput\end{tabular} \\
-		MPC                          & \green{\cmark}                            & \green{\cmark}                        & \green{\cmark}                           & \red{\xmark}                         & \green{\cmark}                                & \red{\xmark}                                   & Assume throughput is predictable                                                                         \\
-		FAVOR                        & \green{\cmark}                            & \green{\cmark}                        & \green{\cmark}                           & \red{\xmark}                         & \red{\xmark}                                & \red{\xmark}                                   & \begin{tabular}[c]{@{}l@{}}Changes playback speed\\ Drop frames\end{tabular}\\
+		Smooth rate adaptation & \green{\cmark} & \green{\cmark} & \red{\xmark} & \red{\xmark} & \green{\cmark} & \red{\xmark} & \begin{tabular}[c]{@{}l@{}}Control look\\ Throughput prediction\end{tabular} \\
+		PANDA & \green{\cmark} & \green{\cmark} & \green{\cmark} & \green{\cmark} & \green{\cmark} & \red{\xmark} & \begin{tabular}[c]{@{}l@{}}Probe network by increased datarate\\ AIMD bitrate selection\end{tabular} \\
+		SARA & \green{\cmark} & \green{\cmark} & \red{\xmark} & \red{\xmark} & \green{\cmark} & \red{\xmark} & \begin{tabular}[c]{@{}l@{}}Buffer used to decide selection algo\\ Match measured throughput\end{tabular} \\
+		MPC & \green{\cmark} & \green{\cmark} & \green{\cmark} & \red{\xmark} & \green{\cmark} & \red{\xmark} & Assume throughput is predictable \\
+		FAVOR & \green{\cmark} & \green{\cmark} & \green{\cmark} & \red{\xmark} & \red{\xmark} & \red{\xmark} & \begin{tabular}[c]{@{}l@{}}Changes playback speed\\ Drop frames\end{tabular}\\
 		\hline
 	\end{tabular}
 	}
