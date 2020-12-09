@@ -42,7 +42,7 @@ BOLA\cite{Spiteri2016} treat ABR streaming as an optimization problem where the 
 Beben \etal\ proposes ABMA+\cite{10.1145/2910017.2910596} which predicts the video freezing probability for each representation and select best representation that satisfy the predefined freezing probability threshold. It continuously monitors the segment download time and uses time characteristics, and the precomputed buffer-map decides the best bitrate for smooth playback.
 
 \subsubsection{Markov Decision-Based Rate Adaptation Approach (mDASH)}
-mDASH is Markov-decision-based bitrate adaptation algorithm proposed by Zhou \etal\ in \cite{7393865}. Author uses a heterogeneous and time varying Markov model to estimate the future throughput.
+mDASH\cite{7393865} formulate rate adaptation problem as Markov Decision Process (MDP)\cite{P-1066} optimization. According to Zhou \etal\, the state vector defien the system state including buffer occupancy, playback rate, previous video bitrate, network bandwidth. The action is the bitrate for next segment. They calculate reward based on various parameters that affect the visual quality which includes quality, quality switch frequency and magnitude, rebuffering. The optimization problem is difficult to solve directly as there are lotof uncertainaty during the streaming session due to time-varying network condition. So, authors have propose a sub-optimal greedy solution. According the their evalution mDASH perform at per with the optimal solution.
 
 \subsection{Hybrid ABR algorithms}
 Some ABR algorithms consider both buffer and throughput to adapt the bitrate. These algorithms can be further categorized in control system based and without control system based. We will discuss few of them here.
